@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>涼しげ☆ペットボトル水族館を作ろう！</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Seaside Calm -->
+    <!-- Application Structure Plan: A single-page application with a tab-based navigation for 'Materials', 'How to Make', and 'How to Play'. The 'How to Make' section will be an interactive stepper, guiding the user one step at a time. This structure breaks down the craft into a clear, manageable, and interactive process, which is more user-friendly for a tutorial than a long, static page. -->
+    <!-- Visualization & Content Choices: Materials -> Goal: Inform -> Presentation: Icon-based grid -> Interaction: Hover effect -> Justification: Visual and clear list. How to Make -> Goal: Instruct -> Presentation: Stepper/Wizard UI -> Interaction: Next/Prev buttons updating content -> Justification: Focuses user on one step at a time. Play -> Goal: Engage -> Presentation: Styled text with icons and subtle CSS animation -> Justification: Provides a pleasant conclusion. All icons are Unicode characters. CONFIRMING NO SVG/Mermaid. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'M PLUS Rounded 1c', sans-serif;
+            background-color: #f0f9ff;
+        }
+        .tab-button.active {
+            background-color: #38bdf8;
+            color: white;
+        }
+        .tab-content {
+            display: none;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        @keyframes gentle-wave {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-3px); }
+        }
+        .wave-animation {
+            animation: gentle-wave 3s ease-in-out infinite;
+        }
+    </style>
+</head>
+<body class="text-slate-700">
+
+    <div class="container mx-auto p-4 sm:p-6 md:p-8 max-w-4xl">
+        
+        <header class="text-center mb-8">
+            <h1 class="text-3xl sm:text-4xl font-bold text-sky-600 mb-2">暑い夏も涼しげ☆ペットボトル水族館</h1>
+            <p class="text-slate-500">お水と洗濯のりを使って、自分だけの水族館をペットボトルの中に作ってみよう！</p>
+        </header>
+
+        <main class="bg-white rounded-2xl shadow-lg p-4 sm:p-6">
+
+            <div class="border-b border-gray-200 mb-6">
+                <nav class="flex flex-wrap -mb-px" id="tab-navigation">
+                    <button class="tab-button text-lg font-bold p-4 border-b-2 border-transparent rounded-t-lg hover:text-sky-600 hover:border-sky-300 transition-colors duration-300 active" data-tab="materials">
+                        <span class="text-2xl mr-2">🎨</span>材料
+                    </button>
+                    <button class="tab-button text-lg font-bold p-4 border-b-2 border-transparent rounded-t-lg hover:text-sky-600 hover:border-sky-300 transition-colors duration-300" data-tab="steps">
+                        <span class="text-2xl mr-2">✂️</span>作り方
+                    </button>
+                    <button class="tab-button text-lg font-bold p-4 border-b-2 border-transparent rounded-t-lg hover:text-sky-600 hover:border-sky-300 transition-colors duration-300" data-tab="play">
+                        <span class="text-2xl mr-2">✨</span>遊び方
+                    </button>
+                </nav>
+            </div>
+
+            <div id="tab-content-container">
+                <section id="materials" class="tab-content active">
+                    <h2 class="text-2xl font-bold text-sky-700 mb-4">用意するもの</h2>
+                    <p class="mb-6 text-slate-600">おうちにあるものや、100円ショップで手軽にそろう材料で作れます。始める前に全部そろっているか確認してみましょう。</p>
+                    <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4 text-center">
+                        <div class="bg-sky-50 p-4 rounded-xl hover:shadow-md hover:scale-105 transition-transform">
+                            <div class="text-4xl mb-2">🧴</div><div class="font-bold">ペットボトル</div>
+                        </div>
+                        <div class="bg-sky-50 p-4 rounded-xl hover:shadow-md hover:scale-105 transition-transform">
+                            <div class="text-4xl mb-2">️📄</div><div class="font-bold">ジップロック</div>
+                        </div>
+                        <div class="bg-sky-50 p-4 rounded-xl hover:shadow-md hover:scale-105 transition-transform">
+                            <div class="text-4xl mb-2">🖍️</div><div class="font-bold">油性ペン</div>
+                        </div>
+                        <div class="bg-sky-50 p-4 rounded-xl hover:shadow-md hover:scale-105 transition-transform">
+                            <div class="text-4xl mb-2">✂️</div><div class="font-bold">ハサミ</div>
+                        </div>
+                        <div class="bg-sky-50 p-4 rounded-xl hover:shadow-md hover:scale-105 transition-transform">
+                            <div class="text-4xl mb-2">💎</div><div class="font-bold">ビーズ</div>
+                        </div>
+                        <div class="bg-sky-50 p-4 rounded-xl hover:shadow-md hover:scale-105 transition-transform">
+                            <div class="text-4xl mb-2">✨</div><div class="font-bold">ラメ</div>
+                        </div>
+                        <div class="bg-sky-50 p-4 rounded-xl hover:shadow-md hover:scale-105 transition-transform">
+                            <div class="text-4xl mb-2">テープ</div><div class="font-bold">ビニールテープ</div>
+                        </div>
+                        <div class="bg-sky-50 p-4 rounded-xl hover:shadow-md hover:scale-105 transition-transform">
+                            <div class="text-4xl mb-2">🗑️</div><div class="font-bold">ゴミ袋</div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="steps" class="tab-content">
+                    <h2 class="text-2xl font-bold text-sky-700 mb-4">作り方の手順</h2>
+                    <p class="mb-6 text-slate-600">下のボタンを押して、手順を一つずつ見ていこう！焦らずゆっくり、楽しんで作るのがコツです。</p>
+                    <div class="bg-sky-50 rounded-xl p-6 min-h-[250px] flex flex-col justify-between">
+                        <div>
+                            <div class="flex justify-between items-center mb-4">
+                                <h3 class="text-xl font-bold text-sky-800" id="step-title"></h3>
+                                <span class="text-sm font-bold text-sky-600 bg-white px-3 py-1 rounded-full" id="step-counter"></span>
+                            </div>
+                            <p class="text-slate-700 text-lg" id="step-description"></p>
+                        </div>
+                        <div class="flex justify-between mt-6">
+                            <button id="prev-step" class="bg-white hover:bg-slate-100 text-slate-600 font-bold py-2 px-6 rounded-lg shadow transition-colors disabled:opacity-50 disabled:cursor-not-allowed">まえへ</button>
+                            <button id="next-step" class="bg-sky-500 hover:bg-sky-600 text-white font-bold py-2 px-6 rounded-lg shadow transition-colors">つぎへ</button>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="play" class="tab-content">
+                    <h2 class="text-2xl font-bold text-sky-700 mb-4">完成したら遊んでみよう！</h2>
+                    <p class="mb-6 text-slate-600">世界に一つだけの水族館が完成！色々な方法で中の様子を観察してみましょう。</p>
+                    <div class="space-y-4">
+                        <div class="bg-sky-50 p-4 rounded-xl flex items-center wave-animation">
+                            <span class="text-3xl mr-4">🔄</span>
+                            <p class="font-bold">振ったり、くるくる回したり、転がしてみよう。</p>
+                        </div>
+                        <div class="bg-sky-50 p-4 rounded-xl flex items-center wave-animation" style="animation-delay: 0.5s;">
+                            <span class="text-3xl mr-4">☀️</span>
+                            <p class="font-bold">光に当てて、キラキラ動く様子を見てみよう。</p>
+                        </div>
+                        <div class="bg-sky-50 p-4 rounded-xl flex items-center wave-animation" style="animation-delay: 1s;">
+                            <span class="text-3xl mr-4">👀</span>
+                            <p class="font-bold">とっても涼しげで、素敵だね！</p>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+
+        <footer class="text-center mt-8 text-slate-500">
+            <p class="italic">ゆらーりゆらーり…暑い夏は涼しげに</p>
+            <p class="italic">いろんなものを泳がせちゃおう☆</p>
+            <p class="italic">ゆらーりゆらーり…見つめれば</p>
+            <p class="italic">いつの間にか私も泳いでいる気分</p>
+        </footer>
+    </div>
+
+    <script>
+        const tabs = document.querySelectorAll('.tab-button');
+        const tabContents = document.querySelectorAll('.tab-content');
+
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                const target = tab.getAttribute('data-tab');
+
+                tabs.forEach(t => t.classList.remove('active'));
+                tab.classList.add('active');
+
+                tabContents.forEach(content => {
+                    if (content.id === target) {
+                        content.classList.add('active');
+                    } else {
+                        content.classList.remove('active');
+                    }
+                });
+            });
+        });
+
+        const stepsData = [
+            { 
+                title: "① 何を泳がせるか考えよう", 
+                description: "海、空、お花、生き物、食べ物、乗り物、自分…など。好きなものを思い浮かべてみよう。" 
+            },
+            { 
+                title: "② 絵を描く", 
+                description: "ジップロックにカラーマジックで自由に絵を描こう。" 
+            },
+            { 
+                title: "③ 絵に沿って切ろう", 
+                description: "ハサミで絵の周りを切っていこう。細かく切らなくても大丈夫！" 
+            },
+            { 
+                title: "④ ペットボトルに入れよう", 
+                description: "ビーズと切った絵をペットボトルの中へ。仕上げにキラキラのラメも忘れずに！" 
+            },
+            { 
+                title: "⑤ フタを閉めて完成！", 
+                description: "ペットボトルのフタをしっかり閉めて、カラービニールテープを巻いたら完成！" 
+            }
+        ];
+
+        let currentStep = 0;
+
+        const stepTitle = document.getElementById('step-title');
+        const stepDescription = document.getElementById('step-description');
+        const stepCounter = document.getElementById('step-counter');
+        const prevButton = document.getElementById('prev-step');
+        const nextButton = document.getElementById('next-step');
+
+        function updateStep() {
+            const step = stepsData[currentStep];
+            stepTitle.textContent = step.title;
+            stepDescription.textContent = step.description;
+            stepCounter.textContent = `ステップ ${currentStep + 1} / ${stepsData.length}`;
+
+            prevButton.disabled = currentStep === 0;
+            if (currentStep === stepsData.length - 1) {
+                nextButton.textContent = 'おわり';
+            } else {
+                nextButton.textContent = 'つぎへ';
+            }
+        }
+
+        prevButton.addEventListener('click', () => {
+            if (currentStep > 0) {
+                currentStep--;
+                updateStep();
+            }
+        });
+
+        nextButton.addEventListener('click', () => {
+            if (currentStep < stepsData.length - 1) {
+                currentStep++;
+                updateStep();
+            } else {
+                alert('ペットボトル水族館の完成です！');
+            }
+        });
+
+        updateStep();
+    </script>
+</body>
+</html>
